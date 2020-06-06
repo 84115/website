@@ -1,0 +1,18 @@
+---
+layout: post
+title: "PI Cluster"
+date: 2019-01-24 12:00
+comments: true
+categories: linux
+---
+
+
+
+Is mint!
+
+
+
+Section
+-------
+
+<img src="https://lh3.googleusercontent.com/8AHQATgVtqG0laWUr-e5wsRt2XPJ_HKsTm9YGb2IFEbj6pxzD3345HTZdPRP15arBeyv2FXUrjLs8ZMszMnVfjpcwzIg-_ZqWw6e3e1bu5N1HjgJkNBX6EGQ8Mkd4IA3e_6mRAt9b4APODKnk5m5NTk94FAGDyJWgmypliW9nhl6yBGWRwQrfmKjufWT3i6jL-JO4kPc-oPII8ymgIbSbeW6o5xGGFn_2JD4ca-VW4YqEzATbYyFULqi0oGhn8w-2PIq_gbZUntZALiEdurfoZ2y2cdxtzVHl1as4hskwQ9ag785Y5MHTfD1FWOq6CcXI_-N7sAAAAErgepsT4fZ80-t6755PDOFfBcNt-u41DqSv1QglaSGF81jYpF3u7HSDMaZv6-Mn8fxxtI4FFu5XyQQCb2Z1VdF8ntwki9gZ7RS1Aqtq9mC8Q3IooLdR7RhIGiYytwRQ5QVohwQhfvmwo_8rrI7u0Mm2FUpSwDsnAz24K5EJaWjqwyDEnH-_k8KyZIou6EzXRXto5_iig6_Tbb7h6dkExahkdJxgX6onv451VoWWrifyK2mGeYmTSwzaSc3evZPuj9BaR2ZHHRSsKTsudD5QSBWlfJLzCvKUwF0mFBmpPGORkKd-NW89vX7-4pJO88yEZRKzi8lhiMeIpw2L6HRUWeD8OQwlDCXnc25E_CsRGb9qNs3y23w=w1287-h1487-no?authuser=0"/>

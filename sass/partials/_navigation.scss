@@ -1,12 +1,13 @@
 body > nav {
   position: relative;
   background-color: $nav-bg;
-  @include background($nav-bg-front, $nav-bg-back);
+  //@include background($nav-bg-front, $nav-bg-back);
   border: {
     top: 1px solid $nav-border-top;
     bottom: 1px solid $nav-border-bottom; }
   padding-top: .35em;
   padding-bottom: .35em;
+  text-transform: uppercase;
   form {
     @include background-clip(padding-box);
     margin: 0; padding: 0;
@@ -16,24 +17,21 @@ body > nav {
       font-family: $sans;
       line-height: 1.1em;
       width: 95%;
-      @include border-radius(.5em);
-      @include background-clip(padding-box);
-      @include box-shadow(lighten($nav-bg, 2) 0 1px);
+      //@include border-radius(.5em);
+      //@include background-clip(padding-box);
+      //@include box-shadow(lighten($nav-bg, 2) 0 1px);
       background-color: lighten($nav-bg, 15);
       border: 1px solid $nav-border;
       color: #888;
       &:focus {
         color: #444;
         border-color: #80b1df;
-        @include box-shadow(#80b1df 0 0 4px, #80b1df 0 0 3px inset);
+        //@include box-shadow(#80b1df 0 0 4px, #80b1df 0 0 3px inset);
         background-color: #fff;
         outline: none;
       }
     }
-  }
-  fieldset[role=search]{ float: right; width: 48%; }
-  fieldset.mobile-nav{ float: left; width: 48%;
-    select{ width: 100%; font-size: .8em; border: 1px solid #888;}
+    display:none !important;
   }
   ul { display: none; }
   @media only screen and (min-width: 550px) {
@@ -42,7 +40,7 @@ body > nav {
       @include horizontal-list(0);
       float: left;
       display: block;
-      padding-top: .15em;
+      margin-top: .15em;
     }
     ul.subscription {
       margin-left: .8em;
@@ -53,14 +51,16 @@ body > nav {
       margin: 0;
     }
     a {
-      @include link-colors($nav-color, $nav-color-hover, $visited: $nav-color);
+      @include link-colors(#fff, red, $visited: #fff);
+      //@include link-colors($nav-color, $nav-color-hover, $visited: $nav-color);
       font-family: $sans;
-      text-shadow: lighten($nav-bg, 12) 0 1px;
+      //text-shadow: lighten($nav-bg, 12) 0 1px;
       float: left;
       text-decoration: none;
       font-size: 1.1em;
-      padding: .1em 0;
+      padding: 0.2em 0.4em;
       line-height: 1.5em;
+      background-color: $nav-fg;
     }
     li + li {
       border-left: 1px solid $nav-border-left;
