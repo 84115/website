@@ -6,13 +6,82 @@ comments: true
 categories: linux
 ---
 
+{% img right /images/posts/pi-cluster.jpg 322 372 Pi Cluster %}
+
+##Hardware
+- 4x Raspberry Pi 3 B+
+- 4x RJ45 Cat6 ethernet cable
+- 4x 32GB Micro SDHC
+- 4x Micro USB cable
+- 1x Switch TP-LINK TL-SF1005D 5-Port 10/100Mbps
+- 5x Anker USB Cables
+- 1x Anker Port Wall Chargers
+- 1x Soldering Iron
+- 1x Hot Glue Gun
+
+##Requirements
+- unix system (linux or mac)
+- flash v2.2.0 installation
+- hypriot OS v1.9.0 download
+- [Pi Image Download](https://www.raspberrypi.org/documentation/installation/installing-images/)
+##SSH keys
+We need a SSH key in order to connect to the cluster without having to type the password every time we access.
+
+In case you don't have any, run this command and follow the steps.
+
+`ssh-keygen -t rsa -b 4096 -C "your_email@example.com"`
+
+`Add the key to your ssh agent, assuming our keys generated are id_rsa and id_rsa.pub
+
+`ssh-add ~/.ssh/id_rsa`
+
+You can find a more in depth explanation in this tutorial
 
 
-Is mint!
 
 
 
-Section
--------
 
-<img src="https://lh3.googleusercontent.com/8AHQATgVtqG0laWUr-e5wsRt2XPJ_HKsTm9YGb2IFEbj6pxzD3345HTZdPRP15arBeyv2FXUrjLs8ZMszMnVfjpcwzIg-_ZqWw6e3e1bu5N1HjgJkNBX6EGQ8Mkd4IA3e_6mRAt9b4APODKnk5m5NTk94FAGDyJWgmypliW9nhl6yBGWRwQrfmKjufWT3i6jL-JO4kPc-oPII8ymgIbSbeW6o5xGGFn_2JD4ca-VW4YqEzATbYyFULqi0oGhn8w-2PIq_gbZUntZALiEdurfoZ2y2cdxtzVHl1as4hskwQ9ag785Y5MHTfD1FWOq6CcXI_-N7sAAAAErgepsT4fZ80-t6755PDOFfBcNt-u41DqSv1QglaSGF81jYpF3u7HSDMaZv6-Mn8fxxtI4FFu5XyQQCb2Z1VdF8ntwki9gZ7RS1Aqtq9mC8Q3IooLdR7RhIGiYytwRQ5QVohwQhfvmwo_8rrI7u0Mm2FUpSwDsnAz24K5EJaWjqwyDEnH-_k8KyZIou6EzXRXto5_iig6_Tbb7h6dkExahkdJxgX6onv451VoWWrifyK2mGeYmTSwzaSc3evZPuj9BaR2ZHHRSsKTsudD5QSBWlfJLzCvKUwF0mFBmpPGORkKd-NW89vX7-4pJO88yEZRKzi8lhiMeIpw2L6HRUWeD8OQwlDCXnc25E_CsRGb9qNs3y23w=w1287-h1487-no?authuser=0"/>
+## Sync Script
+
+some random description, lorem ipsum...
+
+{% codeblock clusteri-sync.sh lang:bash %}
+#pi@raspberry
+
+this=ifconfig | grep -Eo 'inet (addr:)?([0-9]*\.){3}[0-9]*' | grep -Eo '([0-9]*\.){3}[0-9]*' | grep -v '127.0.0.1'
+
+declare NODES=("localhost
+192.168.0.1
+192.168.0.2
+192.168.0.3
+192.168.0.4
+")
+
+SSID="Test Wifi Network"
+PSK="SecretPassword"
+
+echo "network={
+   ssid=\"$SSID\"
+   psk=\"$PSKd\"
+}" >> /etc/wpa_supplicant/wpa_supplicant.conf
+
+sudo systemctl enable ssh
+sudo systemctl start ssh
+
+sudo apt-get install nginx
+
+sudo shutdown -r now
+
+sudo chown -R www-data:www-data srv/
+
+
+
+su www-data
+
+for $NODE in $NODES
+do
+    rsync -v -r --delete -e ssh /var/www/ "www-data@{$NODE}:/var/www/"
+done
+{% endcodeblock %}
+
