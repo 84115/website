@@ -1,0 +1,31 @@
+<section>
+  <h1>Contents</h1>
+  <ul id="scroll_spy"></ul>
+</section>
+<script>
+// window.location.pathname.startsWith('/blog/')
+if (window.location.pathname.startsWith('/blog/')) {
+document.addEventListener("DOMContentLoaded", function(event) {
+    const sections = document.querySelectorAll('h2').entries();
+
+    for (const section of sections) {
+        var attr = section[1].textContent.toLowerCase().replace(' ', '-');
+        section[1].setAttribute("id", attr);
+
+        var node = document.createElement("li");
+        var href = document.createElement("a");
+        href.setAttribute('href', '#' + attr);
+
+		var textnode = document.createTextNode(section[1].textContent);
+		href.appendChild(textnode);
+		node.appendChild(href);
+
+		document.getElementById("scroll_spy").appendChild(node);
+        //console.log(section[1].textContent);
+    }
+
+    //document.getElementById('scroll_spy').innerHTML = '...';
+});
+}
+</script>
+
