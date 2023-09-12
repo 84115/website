@@ -98,7 +98,8 @@ aside.sidebar {
   float: none;
   padding: 0 $pad-min 1px;
   background-color: lighten($sidebar-bg, 2);
-  border-top: 1px solid $sidebar-border;
+  border-top: none !important;
+  // border-top: 1px solid $sidebar-border;
   @extend .group;
 }
 

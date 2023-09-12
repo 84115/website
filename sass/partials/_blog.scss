@@ -8,9 +8,19 @@ article {
     margin-bottom: 1em;
     background: $img-border bottom left repeat-x;
     h1 {
+      color: #fff;
       margin: 0;
-      a { text-decoration: none;
-        &:hover { text-decoration: underline; } }
+      background: black;
+      display: inline-block;
+      text-transform: uppercase;
+      padding: 0.2em 0.4em;
+      a {
+        text-decoration: none;
+        &:hover {
+          text-decoration: underline;
+          color: #fff !important;
+          }
+        }
     }
     p {
       font-size: .9em;
