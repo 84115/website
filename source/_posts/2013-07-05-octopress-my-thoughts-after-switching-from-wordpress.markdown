@@ -8,37 +8,39 @@ categories: Octopress
 
 
 
-Octopress is a framework built on top of Jekyll. It's a static site generator which means that it lacks advance feature which would normally require scripting and a back-end like Wordpress. If you want to know whether you should switch to Octopress or would like to know some tweaks, tips or adjustments then continue through this post.
+Octopress is a framework built on top of Jekyll. It’s a static site generator which means that it lacks advance feature which would normally require scripting and a back-end like Wordpress. If you want to know whether you should switch to Octopress or would like to know some tweaks, tips or adjustments then continue through this post.
 
 
 
 Why To Migrate From Wordpress
 -----------------------------
 
-* Wordpress is a great blogging and CMS platform, but it just had too many features for  my personal blog.
-* So far I have found Octopress easier to maintain than Wordpress. There is no need to maintain wp-super-cache which serves up static pages in the same ways as Octopress along with not needing to manage a local and external LAMP stack.
-* WordPress blogs are a common target for hackers and spammers. To avoid this you need to keep your version of Wordpress constantly up to date.
-* Octopress allow you to create pages using Markdown instead of or along with HTML. Markdown has a cleaner, simpler and more readable syntax.
-* Octopress uses Jekyll to build pages. All pages of the pages are static and no server-side processing involved. This means that any requested page can deliver immediately by the server to the user.
-* THEME ETC, READY FROM THE GET GO
+
+- Wordpress is a great blogging and CMS platform, but it just had too many features for my personal blog.
+- So far I have found Octopress easier to maintain than Wordpress. There is no need to maintain wp-super-cache which serves up static pages in the same ways as Octopress along with not needing to manage a local and external LAMP stack.
+- WordPress blogs are a common target for hackers and spammers. To avoid this you need to keep your version of Wordpress constantly up to date.
+- Octopress allow you to create pages using Markdown instead of or along with HTML. Markdown has a cleaner, simpler and more readable syntax.
+- Octopress uses Jekyll to build pages. All pages of the pages are static and no server-side processing involved. This means that any requested page can deliver immediately by the server to the user.
+- Sharing code is really easy if your blogging about programming. It’s really useful to share code with Octopress, I normally write my posts in SublimeText 2 which is the editor I use to write most of my code in. I can copy and paste code snippets into my Octopress post and keep all the formatting and highlighting. As well as working in a more customizable environment than Wordpress.
+
 
 
 
 Features You Might Miss
 -----------------------
 
-* You can’t edit online from anywhere. With Wordpress a mobile app was available so you did not need to be at your computer/laptop to publish new posts.
-* Yay Markdown. Shame there is no solid way to manipulate images except by hand. I have currently worked around this by using Picasa to host my images which will cache my images and resize my images.
-* Octopress does not feature drafts, previews or publishing. When you deploy your site, you deploy everything. And the publication date is the date it was started, not when it's finished.
-* Although it's nice not having to use the web interface it's also a feature which I also miss being able to post from anywhere, on almost any device.
-* **SLOW PREVIEW LARGE POST**
-* Octopress has less plugins and themes available than Wordpress, If you want more features you will need to wait for someone to write it or write it yourself.
-* By default Octopress does not have a comment system. Although there is the option to use an external service for page comments such as Disqus. But using a service like this means that the comments are not hosted on your service and you lack the flexibility of the Wordpress commenting system.
+- You can’t edit online from anywhere. With Wordpress a mobile app was available so you did not need to be at your computer/laptop to publish new posts.
+- Yay Markdown. Shame there is no solid way to manipulate images except by hand. I have currently worked around this by using Picasa to host my images which will cache my images and resize my images.
+- Octopress does not feature drafts, previews or publishing. When you deploy your site, you deploy everything. And the publication date is the date it was started, not when it's finished.
+- Although it's nice not having to use the web interface it's also a feature which I also miss being able to post from anywhere, on almost any device.
+- By default Octopress can take a long time when compiling posts, there is a workaround for this by using page isolation.
+- Octopress has less plugins and themes available than Wordpress, If you want more features you will need to wait for someone to write it or write it yourself.
+- By default Octopress does not have a comment system. Although there is the option to use an external service for page comments such as Disqus. But using a service like this means that the comments are not hosted on your service and you lack the flexibility of the Wordpress commenting system.
 
 
 
-Conclusion
-----------
+So Why Did I Switch?
+--------------------
 
 Octopress is a great platform targeted at programmers who want to start blogging without having the hassle of customizing static page generators and caching on Wordpress. Personally I think that Octopress is ideal for my personal blog or a blog maintained by several developers which is where version control becomes essential. Although it is not practical for other user like a normal blogger who just wants to write content, a copy-editor or a business looking for more advance features such as LOREMIPSUM.
 
@@ -47,7 +49,7 @@ Octopress is a great platform targeted at programmers who want to start blogging
 Tips, Tweaks & Adjustments
 ==========================
 
-...
+I have written a list of features and improvements which can be made on top of Octopress as well as some useful tips to build pages quicker and setting up a 404 page.
 
 
 
@@ -151,15 +153,26 @@ Offloading Images to Picasa
 
 At first I hosted all of my images using Octopress, then later switch to Picasa to host my images becuase of the following.
 
-* Images will be delivered from CDN (free)
-* Images will cache & resize on the fly.
-* You can create custom image sizes.
-* Optimize image by selecting image quality.
+- Images will be delivered from CDN (free)
+- Images will cache & resize on the fly.
+- You can create custom image sizes.
+- Optimize image by selecting image quality.
 
 
-  
-Conclusion
-----------
 
-[Jekyll](http://jekyllrb.com/docs/plugins/#available_plugins)
-[Octopress](http://github.com/imathis/octopress/wiki/3rd-party-plugins)
+Remove Blog Prefix
+------------------
+
+When Octopress is first set up by default all of your posts, categories and archives will be placed in the `/blog/` directory. It is possible to remove this by doing the following:
+
+- Replace all `/blog` occurrences with a `/` in `_config.yml`
+- Move `source/blog/archives` to `source/`
+- Edit `source/_includes/custom/navigation.html`, replace `/blog/archives` with `/archives`
+- Edit `source/index.html` and replace `/blog/archives` with `/archives`
+
+
+
+Even More Plugins?
+------------------
+
+If you are still looking for more reasons to switch, then browse the [Jekyll](http://jekyllrb.com/docs/plugins/#available_plugins) and [Octopress plugin archives](http://github.com/imathis/octopress/wiki/3rd-party-plugins).

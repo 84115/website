@@ -54,7 +54,9 @@ One unusual thing about borders is that the browser draws them at an angle. One 
   height: 0;
 }
 {% endcodeblock %}
+
 And it will output a shape like this.
+
 <span style="
   display:inline-block;
   border-color:  red green blue orange;
@@ -67,6 +69,7 @@ And it will output a shape like this.
 Using this technique the left and bottom borders can be set to `#888` & the top and right to `#fff`.
 
 Here we have our shape now all we need to do is place it in the corner of our icon.
+
 <span style="
   display:inline-block;
   border-color: #fff #fff #888 #888;
@@ -75,6 +78,7 @@ Here we have our shape now all we need to do is place it in the corner of our ic
   width: 0;
   height: 0;
 "></span>
+
 {% codeblock lang:css %}
 .dog-ear{
   border-color: #888 #fff;
@@ -86,8 +90,6 @@ Here we have our shape now all we need to do is place it in the corner of our ic
 }
 {% endcodeblock %}
 If you want to learn more about border shapes take a look at this [post](http://jonrohan.me/guide/css/creating-triangles-in-css/) by [Jon Rohan](http://jonrohan.me).
-
-<!-- more -->
 
 ###Moving The Dog Ear
 First lets rename our `.dog-ear` to `.file:before`. This will make the element appear directly before the and element with the class `.file`.
@@ -157,4 +159,7 @@ Now you animations will smoothly transition between one state to another.
 
 ###The Final Product
 View the demo of what we have just created.
+
+<!-- more -->
+
 {% jsfiddle b3nkd result,html,css %}
