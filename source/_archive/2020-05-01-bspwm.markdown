@@ -1,0 +1,298 @@
+---
+layout: post
+title: "bspwm"
+date: 2020-05-01 12:00
+comments: true
+categories: bspwm linux
+---
+
+<img src="/images/posts/bspwm.png"/>
+
+[INSPO](https://dev.to/l04db4l4nc3r/bspwm-a-bare-bones-window-manager-44di)
+
+[Fetch my .dotfiles here!](https://github.com/84115/dotfiles)
+
+###A Brief Introduction
+
+The linux philosophy promotes modular software. Linux itself is modular. This ensures plug and play ability, extensibility, and customization to your heart's content. This also means that you can get bare-bones software and install only the bare essentials suited to your needs.
+
+Bspwm or Binary Space Partition Window Manager, is based around the same philosophy. Bspwm is a minimalistic modern window manager that represents windows as the leaves of a full binary tree. Now due to the fact that there is not a lot of comprehensive documentation out there for bspwm (especially as compared to other window managers like i3), I decided to go ahead and make a (somewhat) practical guide myself. Forgive me if this particular entry in the series is too long.
+
+`sudo apt install bspwm`
+
+To run it, simple add the following line in your ~/.xsession file:
+
+`exec bspwm`
+
+Logout and log back in again, and boom! You are good to go. When you login, you will be greeted by a black screen. That is because bspwm doesn't know how to draw the wallpaper yet. You will also notice that none of your typical window manager key bindings work. That is because bspwm requires a third party daemon for the same.
+
+Logout from the current environment and login to either a tty, or any other environment, and let's get started with the configuration so that we can make bspwm a bit usable.
+
+##SXHKD: Adding a keybinding daemon
+
+An example configuration lies in the /usr/share/doc/bspwm/examples/bspwmrc file. Simply copy the bspwmrc file to the ~/.config/bspwm/ directory to get started. The default config file looks like this:
+
+##Adding a key binding daemon
+
+Sxhkd, mentioned in the architecture given above, stands for Simple X Hot Key Daemon (And you thought herbstluftwm was hard to pronounce). It runs in the background and uses a very simple syntax to bind keys to commands. To get started with it simply run:
+
+`sudo apt install sxhkd`
+
+Sxhkd looks for a configuration file for initialization. You can create one at ~/.config/sxhkd/sxhkdrc. Let us look at how to add some basic key-bindings to get started with bspwm:
+
+our sxhkdrc file:
+
+```bash
+# To spawn the terminal
+alt + Return
+  alacritty
+
+# make sxhkd reload its configuration files:
+alt + Escape
+    pkill -USR1 -x sxhkd
+
+# for dmenu
+alt + p
+  dmenu_run
+
+# quit bspwm
+shift + alt + q
+  bspc quit
+```
+
+The second rule makes sure that the moment we hit alt + Escape, our sxhkd reloads automatically, therefore making any further changes will not require us to manually kill the daemon and restart it ourselves.
+
+To start the daemon simply add the following line in your bspwmrc:
+
+```bash
+sxhkd &
+```
+
+<!-- more -->
+
+Now logout and login again. You will be greeted with a black screen, but the moment you hit alt + Return, you will get the terminal of your choice! Now this is all we need for further configuring our bspwm.
+
+Drawing a wallpaper
+Nobody likes a black screen. Our window manager needs some life now. Let us add a wallpaper. Nitrogen is a very good tool for the same. To set it up simply run:
+# install nitrogen (available in almost all public repos)
+sudo apt install nitrogen
+
+# setting wallpaper (provided that there is a mass_effect.png)
+# you can add this line in your bspwmrc too (recommended)
+nitrogen --set-scaled /usr/share/backgrounds/mass_effect.png
+Now our environment (with dmenu) looks like this:
+
+Alt Text
+
+Hmmm, it already looks pretty good. But there is something missing. When I open up a terminal, there is no transparency or drop shadow. Even when I have properly configured opacity in my terminal settings. Let us see how we can fix this.
+
+Setting up a compositor
+To learn what is a compositor, check out this link. Note that my next blog will give you a deeper insight into the working of compositors in linux. So stay tuned :)
+
+Long story short, it is a piece of software responsible for adding effects like drop shadows and transparency in our window managers. Let us get started with compton, one such compositor.
+# installing compton
+sudo apt install compton
+
+# running comption in the background
+# add this command in your bspwmrc (recommended)
+comption &
+After you add the aforementioned line in your bspwmrc, simply reload your bspwm (remember we made a keybinding for the same). Spawn a couple of terminals and enjoy the view:
+
+Alt Text
+
+Wow! looks amazing. But there is still something missing. What we need is a panel to see which workspace we are on, or gain access to some quick actions. Let us see how to configure the same.
+
+Adding a menu bar
+The community has worked a lot on creating beautiful and customizable third party menu bars and their themes. Some of the well know panels are the following:
+
+Polybar
+Lemonbar
+Yabar
+In this blog we will be looking at setting up polybar. You can use the installation candidates, or you can compile it from source as well. Once you do so, just create a folder ~/.config/polybar/config and you are good to go.
+
+We will be using a third party theme from this repository:
+
+Select any theme that you are interested in. For the sake of this blog lets assume you want to go for polybar-1. Simply run the following commands and you are good to go:
+# clone this repo
+git clone https://github.com/adi1090x/polybar-themes
+
+# go to polybar-1 dir
+cd polybar-themes/polybar-1
+
+# copy fonts to local fonts dir (i'll put the fonts in all dirs)
+cp -r fonts/* ~/.local/share/fonts
+
+# reload font cache
+fc-cache -v
+
+# copy everything from polybar-1 to polybar config dir (backup your config first if you have)
+cp -r * ~/.config/polybar
+
+# add the following two commands to your bspwmrc (recommended)
+# kill previously running instances of polybar
+pkill polybar
+
+# run launch.sh 
+~/.config/polybar/launch.sh
+
+
+Once you add the lines in your bspwmrc, simply reload your window manager and you will be able to see a beautiful panel at the bottom of your screen. To configure this panel simply edit the ~/.config/polybar/config.ini file to your heart's content. Now our environment looks something like this:
+
+Alt Text
+
+Aah that is more like it. The pieces are coming together. It is like the time Sheldon Cooper used lego to make a death star. I assure you this is nothing remotely as dramatic, but totally fun :)
+
+The bspwm client
+bspc is your own friendly neighborhood client which ships with bspwm. It sends socket events to bspwm to draw or make changes in your X window system. Due to the fact that it is so powerful on the command line itself, bspwm does not need a second language or syntax for its configuration and thus uses shell script with a set of bspc commands for the same. In this section we will be looking at some of the most important bspc commands and building our configuration further using them. If you are stuck along the way, make sure to check out the man page of bspc (by running man bspc) or the bspwm wiki.
+
+Note that for the purpose of this block, whenever I use the term "action", it is going to refer to a subcommand/functionality of bspc.
+
+Node Actions
+A node in bspwm refers to a window. The bspm node subcommand controls window specific actions. Some of the example commands are listed below:
+
+Command	Action Performed
+bspc node -c	close a window
+bspc node -k	kill a window
+bspc node -d 7	send the window to the 7th desktop
+bspc node -p north	east
+
+
+
+Try these commands on your terminal before adding them to the key-bindings. After adding them, the node section of my sxhkdrc looks like this:
+# send the window to the given desktop
+alt + shift + {1-9}
+  bspc node -d '^{1-9}'
+
+# close and kill
+alt + {_,shift + }c
+    bspc node -{c,k}
+
+# preselect the direction
+# we will see that this means in the manual layout
+super + ctrl + {h,j,k,l}
+    bspc node -p {west,south,north,east}
+
+
+Window State Actions
+Window states refer to how your windows show up in a desktop. They differ from layout in the sense that they apply to a specific window rather than applying to different windows with respect to each other. Bpswm offers 4 states for windows and bspc can be used to swtich between them:
+
+Command	Action Performed	State Description
+bspc node -t tiled	switch the window to tiled state	Its size and position are determined by the window tree.
+bspc node -t floating	switch the window to floating state	Can be moved/resized freely. Although it doesn’t use any tiling space, it is still part of the window tree.
+bspc node -t pseudo_tiled	switch the window to pseudo_tiled state	A tiled window that automatically shrinks but doesn’t stretch beyond its floating size.
+bspc node -t fullscreen	switch the window to fullscreen state	Fills its monitor rectangle and has no borders
+We can switch our window states during runtime by adding a simple keybinding like the following:
+# add these lines in your sxhkdrc file
+# change window states
+alt + {t,shift + t,s,f}
+  bspc node -t {tiled,pseudo_tiled,floating,fullscreen}
+Window Rules
+Love tiling mode but want to start certain programs in another layout? Want to configure specific rules on a per-program basis? This section is for you. Using window rules you can do things like making sure certain software has certain window properties when it is executed.
+
+Bspc has a subcommand which is devoted to adding rules on a per window basis. For example:
+bspc rule -a Firefox-esr desktop='^8' state=floating
+This rule states that whenever I open firefox, It should open on the 8th desktop (workspace/tag) in a floating state. You can easily browse through all of the options available on either the bspwm wiki or its manpage.
+
+One thing to note is that the name of the service that we have mentioned here: "Firefox-esr" is actually the class name of the program in XDG. The bspc rule -a command only uses XDG class names, which can be easily found out by using xprop:
+xprop | grep WM_CLASS
+After entering this on the command line, simply click on the program window you want to get the class name of. You can then refer to it in the bspwmrc using the same name.
+
+We learnt about window states in bspwm. Now let us take a look at the layouts that bspwm offers.
+
+Layouts
+Layout refers to how windows are placed relative to each other in a desktop. It is also an algorithm which dictates where and how the next window spawn will take place. Bspwm requires you to configure which layout to use manually. It offers the following layouts:
+
+Automatic layout
+Manual layout
+Longest side layout
+Spiral layout
+Automatic Layout
+Automatic layout is the default layout in bspwm. Everytime you spawn a window, it splits the window into 2 nodes such that each window has either 2 nodes or no node at all (just like a binary tree):
+
+Alt Text
+
+Manual Layout
+In manual layout, you can pre-select an area in your desktop relative to your current focus. Subsequently spawning a window will ensure that the child is spawned in the pre-selected area. You can pre-select an area using the bspc node -p north|east|west|south command.
+
+Alt Text
+
+Longest Side Layout
+The longest side layout is just like the automatic layout, in that it uses the longest window and splits it up into smaller windows recursively.
+
+Alt Text
+
+Spiral Layout
+Spiral layout is one of the more common layouts. You might remember the fibionacci layout in dwm. The concept remains the same. Windows split in the order of a left spiral.
+
+Alt Text
+
+Polarity
+The polarity of a layout in bspwm refers to the pivot (a child node) around which windows are split. For example in the automatic mode, when we spawn 2 children, the first child always gets split into more children. So by default the polarity of automatic layout is first_child. However, polarity can be easily changed by using the following command:
+bspc config initial_polarity first_child|second_child
+Let us look at some of the available initial polarities:
+
+First Child Polarity
+The first child polarity is similar to the automatic layout, it always splits the first child instead of the second child, which is configured by default.
+
+Second Child Polarity
+The second child polarity can be set using bspc. It is the opposite of the first child polarity in that it splits the second child instead of the first one.
+
+Alt Text
+
+Configuring Key Bindings For Switching Layout
+The bspc config subcommand is versatile. It can be used for configuring both the aesthetics of a window as well as its layout. To switch between layouts, you can simply run one of the following commands or add them in your bspwmrc:
+# for spiral mode
+bspc config automatic_scheme spiral
+
+# for longest side mode
+bspc config automatic_scheme longest_side
+In this section we will be adding key bindings in our sxhkdrc. The goal is to give us an ability to change layouts during runtime and notify us of the change.
+
+For notifications, I will be using a package called zenity. It is maintained by the GNOME project. Running the following command will give us the desired alert we need:
+zenity --info --width=200 --height=100 --text 'This is an info'
+For the purpose of this key binding I created a shell script and placed it in my ~/.config/bspwm/config_scheme.sh. This script gives an alert whenever I change my layout informing me of the change.
+#!/bin/bash
+
+if [ "$1" == "first_child" ]
+then
+  bspc config automatic_scheme first_child
+  zenity --info --width=200 --height=100 --text "Switched to first_child mode!"
+  exit 0
+elif [ "$1" == "longest_side" ]
+then
+  bspc config automatic_scheme longest_side
+  zenity --info --width=200 --height=100 --text "Switched to longest_side mode!"
+  exit 0
+elif [ "$1" == "spiral" ]
+then
+  bspc config automatic_scheme spiral
+  zenity --info --width=200 --height=100 --text "Switched to spiral mode!"
+  exit 0
+else
+  zenity --info --width=200 --height=100 --text "Invalid mode!"
+  exit 1
+fi
+Now to add this keybinding to my sxhkdrc, I can simply append the following lines and voila.
+# to change layouts
+alt + control + {1,2,3}
+  ~/.config/bspwm/config_scheme.sh {first_child,longest_side,spiral}
+Some Shortcomings
+Although bspwm is a very mature project, it still has some shortcomings:
+
+Setting up your bspwm along with keybindings can be a lengthy process.
+Lack of a lot of documentation might force you to read other people's configuration files.
+sxhkd has a habit of breaking when used with the fish shell, because the ^ character is not supported by fish. This can easily be avoided by changing the execution shell by typing set -U SXHKD_SHELL sh.
+Since the key bindings are executed inside a shell, using a heavier shell (eg: fish instead of sh) might be bad for performance.
+Verdict
+Bspwm is a window manager meant for the elitist and enthusiasts who love modularity and bare minimum software. It might be very challenging for a new comer to learn, configure and use, but the benefit is that it gives the full control to YOU, the user. You are responsible for how productive you want to be with bspwm. And that is what I love about it.
+
+Full points for productivity and fun because you configure everything yourself. There are no shadow commands hiding in a facade of default key bindings. The learning curve is fairly high. But if you know the concepts and tools to use, you can bring the pieces together to create your own rendition of the death star out of lego. One thing is for sure: language syntax won't be your bottleneck (unlike window managers like awesome or xmonad). I highly recommend it for enthusiasts.
+
+PS: I have a feeling I am going to stick with bspwm for a while :)
+
+Judgement Rubric	Rating
+Simplicity of use	❤️ ❤️
+Simplicity of Configuration	❤️ ❤️ ❤️
+Learning curve (lesser is better)	❤️ ❤️ ❤️ ❤️
+Productivity	❤️ ❤️ ❤️ ❤️ ❤️
+Fun	❤️ ❤️ ❤️ ❤️ ❤️
