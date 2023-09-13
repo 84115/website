@@ -6,6 +6,11 @@ comments: true
 categories: pwa android ios
 ---
 
+
+ANOTHER POST IDEA -- how to keep pwa push notifications alive
+
+
+
 Service Worker
 ```js
 // ...
