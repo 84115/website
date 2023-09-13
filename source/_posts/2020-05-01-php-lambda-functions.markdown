@@ -6,21 +6,21 @@ comments: true
 categories: php laravel
 ---
 
-{% codeblock %}
+```php
 $extended = function ($c) use ($callable, $factory) {
     return $callable($factory($c), $c);
 };
 
-// with arrow function:
+// with arrow function
 $extended = fn($c) => $callable($factory($c), $c);
-{% endcodeblock %}
+```
 
-{% codeblock %}
+```php
 // Laravel collection example
 $users->map(function($user) {
-    return $user->first_name.' '.$user->last_name;
+    return $user->first_name . ' ' . $user->last_name;
 });
 
-// with arrow function:
-$users->map(fn($user) => $user->first_name.' '.$user->last_name);
-{% endcodeblock  %}
+// with arrow function
+$users->map(fn($user) => $user->first_name . ' ' . $user->last_name);
+```
