@@ -6,17 +6,16 @@ comments: true
 categories: laravel
 ---
 
-[Download here](https://github.com/84115/Laravel-Impersonate)
-
-A simple Laravel Package to temporarily login as other users.
+I've recently developed a Laravel Package to temporarily login as other users when signed in as an admin, [Download here](https://github.com/84115/Laravel-Impersonate).
 
 ## Usage
-You can login to another user through `{app_url}/impersonate/login/{user_id}`.
-
-And you can end the session with `{app_url}/impersonate/logout`.
+- You can login to another user through `{app_url}/impersonate/login/{user_id}`.
+- And you can end the session with `{app_url}/impersonate/logout`.
 
 ## Install Package
-~~`composer require j84115/impersonate`~~ Not yet on Packagist. Install manually.
+```bash
+composer require j84115/impersonate
+```
 
 ## Add Sevice Provider
 Add the Package to `config/app.php`

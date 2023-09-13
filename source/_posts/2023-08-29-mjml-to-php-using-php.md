@@ -1,14 +1,20 @@
 ---
 layout: post
 title: "MJML to HTML using PHP"
-date: 2023-08-24 12:00
+date: 2023-08-29 12:00
 comments: true
 categories: laravel
 ---
 
 If you want to create responsive email templates with ease, you can use MJML, a markup language that simplifies the process. MJML by Spatie uses semantic tags that work well even in Outlook.
 
-You easily render a simple hello world message like so:
+First install the composer package:
+
+```bash
+composer require spatie/mjml-php
+```
+
+Then you can render a simple hello world message like so:
 
 ```php
 use Spatie\Mjml\Mjml;
