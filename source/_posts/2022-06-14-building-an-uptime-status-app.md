@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Building an Uptime Status App"
+title: "Building an Health Status App"
 date: 2022-06-14 12:00
 comments: true
 categories: linux
@@ -13,14 +13,16 @@ Corrupti iusto maiores obcaecati voluptatem, dicta reiciendis voluptatibus fugia
 ### Create Laravel App & Install Packages
 
 ```bash
-laravel new uptime
+laravel new health
 
-cd uptime
+cd health
 
 cp .env.example .env
 php artisan key:generate
 
 composer require ukfast/laravel-health-check
+
+php artisan vendor:publish --provider="UKFast\HealthCheck\HealthCheckServiceProvider" --tag="config"
 ```
 
 You can register custom middleware to run on requests to the /health endpoint. You can add this to the middleware array in the config/healthcheck.php config file you created using the config above, as shown in the example below:
@@ -66,7 +68,7 @@ class JamesBallSiteHealthCheck extends HealthCheck
 
 ### Register Your check
 
-Open `config/healthcheck.php` and add the HealthCheck class namespace entry to the `checks` index of the file:
+Open `config/healthcheck.php` and add the HealthCheck class namespace entry to the `checks` index or replace the existing data:
 
 ```php
 /*
@@ -78,9 +80,21 @@ Open `config/healthcheck.php` and add the HealthCheck class namespace entry to t
 ],
 ```
 
+And if required you can: update the `route-paths.health` value to `json`, this will allow you to access the data as JSON at `{app_url}/json`.
+
+```php
+    /**
+     * Paths to host the health check and ping endpoints
+     */
+    'route-paths' => [
+        'health' => '/json',
+        'ping' => '/ping',
+    ],
+```
+
 ### Create a Page to render the check(s)
 
-Create the following file `resources/views/uptime.blade.php`:
+Create the following file `resources/views/health.blade.php`:
 
 {% raw %}
 ```html
@@ -90,14 +104,15 @@ Create the following file `resources/views/uptime.blade.php`:
         <title>Health Checker</title>
     </head>
     <body>
-        @foreach ($checks as $name => $check)
+        @foreach ($healths as $name => $health)
             <div>
-                <strong>{{ $check['label'] }}</strong>
+                <strong>{{ $health->label }}</strong>
 
-                <p style="color: {{ $check['status'] === 'OK' ? 'green': 'red' }};">
-                    {{ $check['status'] }}
+                <p style="color: {{ $health->status === 'OK' ? 'green': 'red' }};">
+                    {{ $health->status }}
                 </p>
             </div>
+            <hr>
         @endforeach
     </body>
 </html>
@@ -109,19 +124,25 @@ Create the following file `resources/views/uptime.blade.php`:
 Add the following to `routes/web.php` or a controller that you've created.
 
 ```php
+use UKFast\HealthCheck\Controllers\HealthCheckController;
+```
+
+```php
 Route::get('/', function () {
     $response = (new HealthCheckController)->__invoke(app());
 
-    $checks = json_decode($response->content(), true);
+    $healths = json_decode($response->content(), true);
 
-    $checks = collect($checks)
-        ->map(fn ($value, $key) => [
+    $healths = collect($healths)
+        ->map(fn ($value, $key) => (object) ([
             'label' => $key,
-            'status' => $value['status'],
-        ]);
+            'status' => is_string($value)
+                ? $value
+                : $value['status'],
+        ]));
 
-    return view('uptime', [
-        'checks' => $checks,
+    return view('health', [
+        'healths' => $healths,
     ]);
 });
 ```

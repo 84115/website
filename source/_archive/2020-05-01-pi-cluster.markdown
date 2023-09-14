@@ -8,7 +8,7 @@ categories: linux
 
 {% img right /images/posts/pi-cluster.jpg 322 372 Pi Cluster %}
 
-##Hardware
+### Hardware
 - 4x Raspberry Pi 3 B+
 - 4x RJ45 Cat6 ethernet cable
 - 4x 32GB Micro SDHC
@@ -19,12 +19,13 @@ categories: linux
 - 1x Soldering Iron
 - 1x Hot Glue Gun
 
-##Requirements
+### Requirements
 - unix system (linux or mac)
 - flash v2.2.0 installation
 - hypriot OS v1.9.0 download
 - [Pi Image Download](https://www.raspberrypi.org/documentation/installation/installing-images/)
-##SSH keys
+
+### SSH keys
 We need a SSH key in order to connect to the cluster without having to type the password every time we access.
 
 In case you don't have any, run this command and follow the steps.
@@ -42,7 +43,7 @@ You can find a more in depth explanation in this tutorial
 
 
 
-## Sync Script
+###  Sync Script
 
 some random description, lorem ipsum...
 
