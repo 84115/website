@@ -3,7 +3,7 @@ layout: post
 title: "E-Commerce Product Variants"
 date: 2021-04-26 12:00
 comments: true
-categories: laravel
+categories: php laravel e-commerce
 ---
 
 I often see developers asking how to model products and their variants in e-commerce projects. Whilst a lot of developers will create a products table in their database and then a product_variants table or similar, I take a more real-world approach when it comes to modelling a product and its variants.

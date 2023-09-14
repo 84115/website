@@ -3,7 +3,7 @@ layout: post
 title: "Octopress: Custom 404 page"
 date: 2013-06-21 21:38
 comments: true
-categories: Octopress
+categories: octopress
 ---
 
 

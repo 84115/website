@@ -3,7 +3,7 @@ layout: post
 title: "bspwm"
 date: 2020-05-01 12:00
 comments: true
-categories: bspwm linux
+categories: linux bspwm
 ---
 
 <img src="/images/posts/bspwm.png"/>

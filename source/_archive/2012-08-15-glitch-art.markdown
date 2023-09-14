@@ -3,7 +3,7 @@ layout: post
 title: "Glitch Art"
 date: 2012-08-15 20:38
 comments: true
-categories:  Images
+categories: images
 ---
 
 {% img left http://lh4.googleusercontent.com/HCMvis2_KAzV4h_k5NSoYGlng9Z0I9rDM0I5iMTCQFw  "Glitch Art 1" %}

@@ -3,7 +3,7 @@ layout: post
 title: "Building a Standalone Health Status App"
 date: 2022-06-14 12:00
 comments: true
-categories: linux
+categories: php laravel linux
 ---
 
 The purpose of this tutorial to create a standalone health monitor for sites and applications on multiple domains.

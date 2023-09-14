@@ -3,7 +3,7 @@ layout: post
 title: "Test Post Please Ignore"
 date: 2013-06-18 21:37
 comments: true
-categories: Misc
+categories: misc
 ---
 
 Looks like I have successfully imported my previous posts from Wordpress and deployed Octopress.

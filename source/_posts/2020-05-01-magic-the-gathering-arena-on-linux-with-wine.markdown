@@ -3,7 +3,7 @@ layout: post
 title: "Magic The Gathering: Arena; On Linux With Wine"
 date: 2020-03-16 12:00
 comments: true
-categories: linux
+categories: mtg linux
 ---
 
 1. Download the latest .msi file, <a target="_blank" href="https://mtgarena-support.wizards.com/hc/en-us/articles/4402583467156-Installing-through-the-Windows-Installer-Package-MSI-">here</a>

@@ -3,7 +3,7 @@ layout: post
 title: "Octopress: My Thoughts After Switching From Wordpress"
 date: 2013-07-05 18:13
 comments: true
-categories: Octopress
+categories: octopress
 ---
 
 

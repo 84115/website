@@ -3,7 +3,7 @@ layout: post
 title: "Workflowy: Organising My Brain"
 date: 2013-04-08 12:47
 comments: true
-categories: Workflowy
+categories: work
 ---
 ###Basic Features
 To use Workflowy simply type right on the screen. Write some text and it turns into a bullet point. You can add more bullets and nested bullets, as well as a note which appears underneath attached bullet in a lighter colour.

@@ -3,7 +3,7 @@ layout: post
 title: "Laravel Impersonate"
 date: 2023-03-22 12:00
 comments: true
-categories: laravel
+categories: php laravel
 ---
 
 I've recently developed a Laravel Package to temporarily login as other users when signed in as an admin, [Download here](https://github.com/84115/Laravel-Impersonate).

@@ -3,7 +3,7 @@ layout: post
 title: "How to Debug Common Gateway Errors"
 date: 2023-09-12 12:00
 comments: true
-categories: linux, nginx, php
+categories: linux nginx php
 ---
 
 When developing a web application youl commonly run in Gateway errors like`502 Bad Gateway` or `504 Gateway Timeout`.

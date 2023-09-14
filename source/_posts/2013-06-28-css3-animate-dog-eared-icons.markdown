@@ -3,7 +3,7 @@ layout: post
 title: "CSS3: Animate Dog Eared Icons"
 date: 2013-06-28 17:59
 comments: true
-categories:  [CSS3]
+categories: css
 ---
 
 TLDR: [View the demo here](http://jsfiddle.net/84115/b3nkd/light/)
