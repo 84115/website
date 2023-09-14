@@ -21,6 +21,7 @@ cp .env.example .env
 php artisan key:generate
 
 composer require ukfast/laravel-health-check
+composer require guzzlehttp/guzzle
 
 php artisan vendor:publish --provider="UKFast\HealthCheck\HealthCheckServiceProvider" --tag="config"
 ```
@@ -30,13 +31,14 @@ You can register custom middleware to run on requests to the /health endpoint. Y
 ### Create Your First Health Check
 
 We'll create an example health check for this site.
-You should change `J84115` to a namespace for the app or business as well as the `$name` and `$domain` endpoint.
+You should change `J84115` to a namespace for the app or business as well as the class name, `$name`, `$domain` endpoint.
 
 ```php
 <?php
 
 namespace App\HealthChecks\J84115;
 
+use Illuminate\Support\Facades\Http;
 use UKFast\HealthCheck\HealthCheck;
 
 class JamesBallSiteHealthCheck extends HealthCheck
@@ -46,18 +48,9 @@ class JamesBallSiteHealthCheck extends HealthCheck
 
     public function status()
     {
-        $curlInit = curl_init($this->domain);
+        $response = Http::get($this->domain);
 
-        curl_setopt($curlInit, CURLOPT_CONNECTTIMEOUT, 10);
-        curl_setopt($curlInit, CURLOPT_HEADER, true);
-        curl_setopt($curlInit, CURLOPT_NOBODY, true);
-        curl_setopt($curlInit, CURLOPT_RETURNTRANSFER, true);
-
-        $response = curl_exec($curlInit);
-
-        curl_close($curlInit);
-
-        if ($response) {
+        if ($response->successful()) {
             return $this->okay();
         } else {
             return $this->problem("Failed to connect to $this->domain");
