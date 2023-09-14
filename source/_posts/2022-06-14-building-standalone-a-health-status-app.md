@@ -1,16 +1,21 @@
 ---
 layout: post
-title: "Building an Health Status App"
+title: "Building a Standalone Health Status App"
 date: 2022-06-14 12:00
 comments: true
 categories: linux
 ---
 
-Lorem ipsum dolor sit amet consectetur adipisicing elit.
-Quo enim voluptate assumenda iure sapiente.
-Corrupti iusto maiores obcaecati voluptatem, dicta reiciendis voluptatibus fugiat! Quae expedita voluptatibus repellendus nisi ipsam quasi!
+The purpose of this tutorial to create a standalone health monitor for sites and applications on multiple domains.
+On the route url of the site will be a rendered list for developers and colleagues.
+
+This tutorial also adds a `/ping` endpoint that is used to receive "pong" in response.
+
+As well as `/json` endpoint to receive the status data in JSON.
 
 ### Create Laravel App & Install Packages
+
+To get started we'll need to set up a Laravel application, install Guzzle and `ukfast/laravel-health-check`:
 
 ```bash
 laravel new health
@@ -26,7 +31,6 @@ composer require guzzlehttp/guzzle
 php artisan vendor:publish --provider="UKFast\HealthCheck\HealthCheckServiceProvider" --tag="config"
 ```
 
-You can register custom middleware to run on requests to the /health endpoint. You can add this to the middleware array in the config/healthcheck.php config file you created using the config above, as shown in the example below:
 
 ### Create Your First Health Check
 
