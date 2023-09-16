@@ -17,9 +17,43 @@ When the same arguments occur again it will return the cache value otherwise it 
 ### Creating the Function
 First We'll start by creating a function that returns an anonymous function.
 
+```php
+function memoize($function)
+{
+    return function () use ($function) {
+        // 
+    };
+}
+```
+
 Then create an array that is stored statically to store the caches with `static $caches = []`.
 
+```php
+function memoize($function)
+{
+    return function () use ($function) {
+        static $caches = [];
+
+        //
+    };
+}
+```
+
 Now we can store the arguments of the function with `$arguments = func_get_args()` and serialize the data to be used as a key `$key = serialize($arguments)`.
+
+```php
+function memoize($function)
+{
+    return function () use ($function) {
+        static $caches = [];
+
+        $arguments = func_get_args();
+        $key = serialize($arguments);
+
+        // 
+    };
+}
+```
 
 And then we'll check if the entry exists `! array_key_exists($key, $caches)` and if not compute then store the value with `$caches[$key] = $function(...$arguments)`.
 
@@ -47,23 +81,29 @@ function memoize($function)
 Here we can create a function that'll we'll pass as an argument to `memoize`.
 In this example we'll create a function that double the value passed; for a more real-world example this could be a function call within a recusive loop or a request to an API which would get recalled, like getting user, order, transaction, etc information.
 
-In the example the call we'll make is to `$memoizedDouble(10)` once which will calculate the value.
-On subsequent calls of `$memoizedDouble(10)` it will return the cached value in the example.
+In this cliche example we'll cache the results of a fibonacci sequence with `$memoizedFibonacci(10)` and once which will calculate the value.
+On subsequent calls of `$memoizedFibonacci(10)` it will return the cached value in the example.
 
 ```php
-$double = function ($number) {
-    return $number * 2;
-};
+$fibonacci = function ($number) {
+    if ($number == 0) {
+        return 0;
+    } elseif ($number == 1) {
+        return 1;
+    } else {
+        return fibonacci($number - 1) + fibonacci($number - 2);
+    }
+}
 
-$memoizedDouble = memoize($add);
+$memoizedFibonacci = memoize($add);
 
-// 20
-var_dump($memoizedDouble(10));
+// 55
+var_dump($memoizedFibonacci(10));
 
-// 100
-var_dump($memoizedDouble(50));
+// 6765
+var_dump($memoizedFibonacci(20));
 
-// 20
+// 55
 // Since the exact same arguments have been used
 // once already, this will return the cached result.
 var_dump($memoizedDouble(10));
