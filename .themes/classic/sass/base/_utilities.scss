@@ -14,9 +14,9 @@
 
 @mixin selection($bg, $color: inherit, $text-shadow: none){
   * {
-    &::-moz-selection { background: $bg; color: $color; text-shadow: $text-shadow; }
-    &::-webkit-selection { background: $bg; color: $color; text-shadow: $text-shadow; }
-    &::selection { background: $bg; color: $color; text-shadow: $text-shadow; }
+    &::-moz-selection { background: #ccc; color: $color; text-shadow: $text-shadow; }
+    &::-webkit-selection { background: #ccc; color: $color; text-shadow: $text-shadow; }
+    &::selection { background: #ccc; color: $color; text-shadow: $text-shadow; }
   }
 }
 

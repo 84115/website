@@ -23,7 +23,7 @@
 }
 
 figure.code, .gist-file, pre {
-  @include box-shadow(rgba(#000, .06) 0 0 10px);
+  // @include box-shadow(rgba(#000, .06) 0 0 10px);
   .highlight pre { @include box-shadow(none); }
 }
 
@@ -223,6 +223,7 @@ figure.code {
   margin-bottom: 1.5em;
   pre { margin-bottom: 0; }
   figcaption {
+    display: none;
     position: relative;
     @extend .code-title;
     a { @extend .download-source; }
