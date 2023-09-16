@@ -11,6 +11,6 @@ Looks like I have successfully imported my previous posts from Wordpress and dep
 {% codeblock helloWorld.c %}
 #include <stdio.h>
 int main() {
-printf("Hello World!\n");
+    printf("Hello World!\n");
 }
 {% endcodeblock %}
