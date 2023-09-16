@@ -106,7 +106,7 @@ To enable this function open up `_config.yml` and set `lsi: true`
 The lsi option will use a statistical analysis to calculate which pages are most relevant.  
 Now you need to install GSL using Ruby Gems.
 {% codeblock lang:bash %}
-$ gem install gsl
+gem install gsl
 {% endcodeblock %}
 After GSL is installed you can regenerated your blog.
 
