@@ -109,7 +109,7 @@ var_dump($memoizedFibonacci(20));
 var_dump($memoizedDouble(10));
 ```
 
-Or we make a call to an external API `$$memoizedUserFromApi('joe_bloggs')` instead like so.
+Or we make a call to an external API `$memoizedUserFromApi('joe_bloggs')` instead like so.
 
 ```php
 $getUserFromApi = function ($username) {
@@ -119,15 +119,15 @@ $getUserFromApi = function ($username) {
 $memoizedUserFromApi = memoize($getUserFromApi);
 
 // JSON: { "username": "joe_bloggs", ... }
-var_dump($$memoizedUserFromApi('joe_bloggs'));
+var_dump($memoizedUserFromApi('joe_bloggs'));
 
 // JSON: { "username": "another_person", ... }
-var_dump($$memoizedUserFromApi('another_person'));
+var_dump($memoizedUserFromApi('another_person'));
 
 // JSON: { "username": "joe_bloggs", ... }
 // Since the exact same arguments have been used
 // once already, this will return the cached result.
-var_dump($$memoizedUserFromApi('joe_bloggs'));
+var_dump($memoizedUserFromApi('joe_bloggs'));
 ```
 
 ### In Conclusion
