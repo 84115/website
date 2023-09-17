@@ -42,11 +42,6 @@ sudo systemctl enable ssh
 sudo systemctl start ssh
 ```
 
-
-
-
-
-
 ###  Wifi Setup Script
 
 Next we'll need to set up Wifi on the Master Node only:
@@ -65,7 +60,7 @@ sudo shutdown -r now
 
 ### Running Commands On Multiple Instances
 This can be done by iterating of the `NODES` list (modify as required) on the Master Node.
-Then you can add the required command calls in this mock example, I'll clear all the data in the `/var/www/` diriectory:
+Then you can add the required command calls in this mock example, I'll clear all the data in the `/var/www/` directory:
 
 ```bash
 declare NODES=("localhost
@@ -80,3 +75,7 @@ do
     rsync -v -r --delete -e ssh /var/www/ "www-data@{$NODE}:/var/www/"
 done
 ```
+
+### In Conclusion
+This is just the foundation for setting up pi cluster hardware without diving into server configuration as this is just a hobby project at the moment.
+I may research [Kubernetes](https://kubernetes.io) in the future, of which I may create a follow up article on.
