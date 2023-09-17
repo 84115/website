@@ -6,6 +6,8 @@ comments: true
 categories: linux pi
 ---
 
+> As of writing this is simply a hobby project at the moment and doesn't dive into server configuration.
+
 {% img right /images/posts/pi-cluster.jpg 322 372 Pi Cluster %}
 
 ### Hardware
