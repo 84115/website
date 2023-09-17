@@ -3,7 +3,7 @@ layout: post
 title: "Working with Value Objects in Laravel"
 date: 2021-01-08 12:00
 comments: true
-categories: laravel
+categories: php laravel
 ---
 
 I’m currently re-building a video on demand platform I operate, Your Fight Site VOD. During the build, I’ve found myself using more and more value objects.
@@ -16,6 +16,39 @@ Value objects for single properties
 In my application, I’ve been unearthing values that can be elevated from simple, primitive values (like strings and integers) to value objects. One is a video’s duration. In the database, I store this as a simple integer (representing the number of seconds), but this presented the opportunity to create a Duration object. Now that number (i.e. 3,600) has meaning. The class looks like this:
 
 ```php
+class HorsePower
+{
+    protected int $pferdestarkeConversionRate = 1.0138696654;
+    protected int $wattConversionRate = 746;
+
+    public function __construct(protected int $amount)
+    {
+        $this->amount = $amount;
+    }
+
+    public static function fromAmount(int $amount)
+    {
+        return new static($amount);
+    }
+
+    public function toPferdestarke(int $amount): int
+    {
+        return (int) round($this->amount * $this->pferdestarkeConversionRate);
+    }
+
+    public function toWatts(): int
+    {
+        return $this->amount * $this->wattConversionRate;
+    }
+
+    public function __toString()
+    {
+        return (string) "{$this->amount}BHP";
+    }
+}
+```
+
+<!-- ```php
 class Duration
 {
     protected $seconds;
@@ -45,13 +78,27 @@ class Duration
         return (string) $this->seconds;
     }
 }
-```
+``` -->
 
-The class is instantiated with an integer value (and can’t be created with any other value). As it’s a class, I can then define methods for common operations, such as getting different representations of the value (i.e. as minutes, or as a HH:MM:SS-formatted time string).
+The class is instantiated with an integer value (and can’t be created with any other value).
+As it’s a class, I can then define methods for common operations, such as getting different representations of the value (i.e. as minutes, or as a HH:MM:SS-formatted time string).
 
-I’ve also defined as `__toString()` method. This is so I can use it in Eloquent models. I can add a mutator for my `duration` attribute to instead return this new value object:
+I’ve also defined as `__toString()` method. This is so I can use it in Eloquent models.
+I can add a mutator for my `duration` attribute to instead return this new value object:
 
 ```php
+class Vehicle extends Model
+{
+    public function getHorsePowerAttribute($value): ?HorsePower
+    {
+        return transform($value, function (int $value) {
+            return HorsePower::fromAmount($value);
+        });
+    }
+}
+```
+
+<!-- ```php
 class Video extends Model
 {
     public function getDurationAttribute($value): ?Duration
@@ -60,14 +107,18 @@ class Video extends Model
             return Duration::fromSeconds($value);
         });
     }
-}
+} -->
 ```
 
 Now when I call $video->duration, I’ll get a Duration instance (if the duration is greater than zero). If I use this attribute in a Blade template, then it’ll just be cast to a string and the original value presented thanks to the __toString() magic method:
 
 ```html
-<p>Duration: {{ $video->duration }}</p>
+<p>Horse Power: {{ $vehicle->horse_power }}</p>
 ```
+
+<!-- ```html
+<p>Duration: {{ $video->duration }}</p>
+``` -->
 
 Value objects for multiple properties
 In my application, a video can also be rented and streamed for a predetermined length of time and amount. This time and amount is set by the content owner. I have three properties representing this:
@@ -83,6 +134,30 @@ rental_interval_count is the number of days/weeks/months/years a customer can re
 Together, these make up what I’ve called the rental terms. I’ve therefore created a class that takes the values of these three properties:
 
 ```php
+class EngineServiceState
+{
+    protected $horsePower;
+
+    public function __construct(protected HorsePower $horsePower)
+    {
+        $this->isHorsePowerValid($horsePower);
+    }
+
+    public function getHorsePower(): HorsePower
+    {
+        return $horsePower;
+    }
+
+    protected function isHorsePowerValid(HorsePower $horsePower): void
+    {
+        if ($horsePower->amount > 0) {
+            throw new InvalidArgumentException('Invalid amount. Must be greater than 0.');
+        }
+    }
+}
+```
+
+<!-- ```php
 class RentalTerms
 {
     protected $amount;
@@ -124,11 +199,23 @@ class RentalTerms
         }
     }
 }
-```
+``` -->
 
 As this class doesn’t map to a single value, I just added a “getter” to my Video class:
 
 ```php
+class Vehicle extends Model
+{
+    public function getEngineServiceState(): EngineServiceState
+    {
+        return new EngineServiceState(
+            $this->horse_power,
+        );
+    }
+}
+```
+
+<!-- ```php
 class Video extends Model
 {
     public function getRentalTerms(): RentalTerms
@@ -140,16 +227,24 @@ class Video extends Model
         );
     }
 }
-```
+``` -->
 
 Again, I can use methods on the object to get the rental terms in a variety of helpful formats throughout the application, and in Blade templates:
 
 ```html
+<p>
+  Horse Power: {{ $horsePower->__toString() }}
+  Pferdestarke: {{ $horsePower->toPferdestarke() }}
+  Watts: {{ $horsePower->toWatts() }}
+</p>
+```
+
 <!-- Example: Rent for £3.99 for 1 month -->
+<!-- ```html
 <p>
   Rent for {{ $terms->getAmountFormatted() }}
   for {{ $terms->getIntervalFormatted() }}
 </p>
-```
+``` -->
 
 Hopefully this gives you some ideas if you’ve not used value objects in your projects before.
