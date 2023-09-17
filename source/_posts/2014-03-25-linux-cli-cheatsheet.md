@@ -144,3 +144,5 @@ Calculate permission digits by adding numbers below.
 | `kill pid` | Kill process with id `pid` |
 | `pkill name` | Kill process with name `name` |
 | `killall name` | Kill all processes with names beginning `name` |
+
+&nbsp;
