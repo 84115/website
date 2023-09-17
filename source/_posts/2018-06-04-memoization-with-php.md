@@ -6,6 +6,8 @@ comments: true
 categories: php
 ---
 
+> This article was updated at 2019-12-17 to add support for anonymous functions.
+
 Are you making too many repeated calls to the same resource intensive functions?
 Do you need to optimise recursive function calls?
 Then memoization could help with that.
