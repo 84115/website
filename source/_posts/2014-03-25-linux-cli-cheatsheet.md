@@ -6,7 +6,7 @@ comments: true
 categories: linux
 ---
 
-lorem ipsum...
+Here's a cheat sheet of the core linux commands that I use daily.
 
 ###  Bash Commands
 
