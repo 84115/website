@@ -13,6 +13,12 @@ Recently I've been refactoring an existing codebase for a client where I have be
 A value object is used to represent a simple entity.
 For example we can use a money as an example if two customers both have £10 then the values would be loosely equal `==` but every bank note is uniquely numbered so the would not be strictly equal `===`.
 
+### Use Case
+
+We can convert primitive values to value objects.
+This was useful as the horse power of a vehicle can be stored in the database as an interger. 
+We can represent this with the a class `HorsePower` which allows us to convert it to other units `toPferdestarke`, `toWatts`, a formatted string `__toString` as well as validate the data `validate`.
+
 ```php
 class HorsePower
 {
