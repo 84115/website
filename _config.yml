@@ -77,8 +77,8 @@ github_show_profile_link: true
 github_skip_forks: true
 
 # Disqus Comments
-#disqus_short_name: james-ball
-#disqus_show_comment_count: true
+disqus_short_name: james-ball
+disqus_show_comment_count: true
 
 # Google Analytics
 google_analytics_tracking_id:
