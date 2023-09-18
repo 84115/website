@@ -59,6 +59,8 @@ class HorsePower
 }
 ```
 
+A mutator `horse_power` attribute has been added return the value object instead.
+
 ```php
 class Vehicle extends Model
 {
@@ -71,9 +73,13 @@ class Vehicle extends Model
 }
 ```
 
+Since we define `__toString` earlier we are able to express the attribute within a blade file like so.
+
 ```html
 <p>Horse Power: {% raw %}{{ $vehicle->horse_power }}{% endraw %}</p>
 ```
+
+Next I'll create an engine class, this will be used to contain the data objects associated with it as well as any added in the future like the ecu, torque or pferdestarke of the `Engine`.
 
 ```php
 class Engine
@@ -92,6 +98,9 @@ class Engine
 }
 ```
 
+Now we can add a getter to the `Vehicle` class.
+Doing this allows you to add more data objects to the like weight of the `Vehicle`.
+
 ```php
 class Vehicle extends Model
 {
@@ -103,6 +112,9 @@ class Vehicle extends Model
     }
 }
 ```
+
+We can use `$vehicle->getEngine()` then call the `getHorsePower` method to get the data object (stored as `$engine` in the example).
+This can be called in various ways to get the formatted data throughout the application such as in Blade.
 
 ```html
 <p>
