@@ -6,6 +6,13 @@ comments: true
 categories: php laravel
 ---
 
+Recently I've been refactoring an existing codebase for a client where I have been using value objects to help represent data.
+
+### Definition
+
+A value object is used to represent a simple entity.
+For example we can use a money as an example if two customers both have £10 then the values would be loosely equal `==` but every bank note is uniquely numbered so the would not be strictly equal `===`.
+
 ```php
 class HorsePower
 {
@@ -58,6 +65,10 @@ class Vehicle extends Model
 }
 ```
 
+```html
+<p>Horse Power: {% raw %}{{ $vehicle->horse_power }}{% endraw %}</p>
+```
+
 ```php
 class Engine
 {
@@ -85,4 +96,12 @@ class Vehicle extends Model
         );
     }
 }
+```
+
+```html
+<p>
+  Horse Power: {% raw %}{{ $engine->__toString() }}{% endraw %}
+  Pferdestarke: {% raw %}{{ $engine->toPferdestarke() }}{% endraw %}
+  Watts: {% raw %}{{ $engine->toWatts() }}{% endraw %}
+</p>
 ```
