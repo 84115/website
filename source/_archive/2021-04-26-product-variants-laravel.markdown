@@ -2,7 +2,7 @@
 layout: post
 title: "E-Commerce Product Variants"
 date: 2021-04-26 12:00
-comments: true
+comments: false
 categories: php laravel e-commerce
 ---
 

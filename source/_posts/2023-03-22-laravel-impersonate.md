@@ -2,7 +2,7 @@
 layout: post
 title: "Laravel Impersonate"
 date: 2023-03-22 12:00
-comments: true
+comments: false
 categories: php laravel
 ---
 

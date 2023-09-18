@@ -2,7 +2,7 @@
 layout: post
 title: "bspwm"
 date: 2020-05-01 12:00
-comments: true
+comments: false
 categories: linux bspwm
 ---
 

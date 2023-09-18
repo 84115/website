@@ -2,7 +2,7 @@
 layout: post
 title: "My First Year of Freelancing"
 date: 2023-06-15 12:00
-comments: true
+comments: false
 categories: work
 ---
 

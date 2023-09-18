@@ -2,7 +2,7 @@
 layout: post
 title: "Magic The Gathering: Arena; On Linux With Wine"
 date: 2020-03-16 12:00
-comments: true
+comments: false
 categories: mtg linux
 ---
 

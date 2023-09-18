@@ -2,7 +2,7 @@
 layout: post
 title: "Xscreensaver Wallpaper"
 date: 2020-02-12 12:00
-comments: true
+comments: false
 categories: linux x-server
 ---
 

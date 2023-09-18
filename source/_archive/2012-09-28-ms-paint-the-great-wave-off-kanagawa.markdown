@@ -2,7 +2,7 @@
 layout: post
 title: "MS Paint: The Great Wave off Kanagawa"
 date: 2012-09-28 11:47
-comments: true
+comments: false
 categories: images
 ---
 

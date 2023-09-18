@@ -2,7 +2,7 @@
 layout: post
 title: "How to Debug Common Gateway Errors"
 date: 2023-09-12 12:00
-comments: true
+comments: false
 categories: linux nginx php
 ---
 

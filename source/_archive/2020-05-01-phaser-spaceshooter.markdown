@@ -2,7 +2,7 @@
 layout: post
 title: "Phaser 3: Space Shooter"
 date: 2018-09-28 12:00
-comments: true
+comments: false
 categories: js phaser
 ---
 

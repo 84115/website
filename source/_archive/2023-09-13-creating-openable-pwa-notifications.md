@@ -2,7 +2,7 @@
 layout: post
 title: "Creating Openable PWA Notifications"
 date: 2023-09-13 12:00
-comments: true
+comments: false
 categories: js pwa android ios
 ---
 

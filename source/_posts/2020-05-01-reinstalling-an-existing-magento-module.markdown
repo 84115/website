@@ -2,7 +2,7 @@
 layout: post
 title: "Reinstalling Existing Magento 1 Modules"
 date: 2015-09-17 12:00
-comments: true
+comments: false
 categories: php magento
 ---
 

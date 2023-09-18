@@ -2,7 +2,7 @@
 layout: post
 title: "Glitch Art"
 date: 2012-01-09 20:38
-comments: true
+comments: false
 categories: images
 ---
 

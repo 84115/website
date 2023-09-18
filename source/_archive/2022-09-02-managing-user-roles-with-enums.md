@@ -2,7 +2,7 @@
 layout: post
 title: "Managing User Roles With Enums"
 date: 2022-09-02 12:00
-comments: true
+comments: false
 categories: laravel
 ---
 

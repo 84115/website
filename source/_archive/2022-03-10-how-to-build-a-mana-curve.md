@@ -2,7 +2,7 @@
 layout: post
 title: "How to Build a Mana Curve"
 date: 2022-03-10 12:00
-comments: true
+comments: false
 categories: mtg
 ---
 

@@ -2,7 +2,7 @@
 layout: post
 title: "MJML to HTML using PHP"
 date: 2023-08-29 12:00
-comments: true
+comments: false
 categories: laravel
 ---
 

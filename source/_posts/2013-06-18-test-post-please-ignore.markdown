@@ -2,7 +2,7 @@
 layout: post
 title: "Test Post Please Ignore"
 date: 2013-06-18 21:37
-comments: true
+comments: false
 categories: misc
 ---
 

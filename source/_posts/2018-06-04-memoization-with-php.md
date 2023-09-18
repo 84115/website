@@ -2,7 +2,7 @@
 layout: post
 title: "Memoization With PHP"
 date: 2018-06-04 12:00
-comments: true
+comments: false
 categories: php
 ---
 

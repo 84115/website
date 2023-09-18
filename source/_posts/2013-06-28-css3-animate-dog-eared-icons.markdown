@@ -2,7 +2,7 @@
 layout: post
 title: "CSS3: Animate Dog Eared Icons"
 date: 2013-06-28 17:59
-comments: true
+comments: false
 categories: css
 ---
 

@@ -2,7 +2,7 @@
 layout: post
 title: "Typical Student Feedback & Forum Replies"
 date: 2013-05-14 20:12
-comments: true
+comments: false
 categories: misc
 ---
 

@@ -2,10 +2,9 @@
 layout: post
 title: "Octopress: Custom 404 page"
 date: 2013-06-21 21:38
-comments: true
+comments: false
 categories: octopress
 ---
-
 
 Open up `config.ru` from the root directory and update the sinatra `not_found` route to the following:
 {% codeblock config.ru lang:ruby %}

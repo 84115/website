@@ -2,7 +2,7 @@
 layout: post
 title: "Linux CLI Cheatsheet"
 date: 2014-03-25 12:00
-comments: true
+comments: false
 categories: linux
 ---
 
