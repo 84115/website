@@ -36,6 +36,13 @@ class HorsePower
     {
         return (string) "{$this->amount}BHP";
     }
+
+    public function validate(): void
+    {
+        if ($this->amount > 0) {
+            throw new InvalidArgumentException('Invalid amount. Must be greater than 0.');
+        }
+    }
 }
 ```
 
@@ -51,30 +58,19 @@ class Vehicle extends Model
 }
 ```
 
-```html
-<p>Horse Power: {{ $vehicle->horse_power }}</p>
-```
-
 ```php
-class EngineServiceState
+class Engine
 {
     protected $horsePower;
 
     public function __construct(protected HorsePower $horsePower)
     {
-        $this->isHorsePowerValid($horsePower);
+        $horsePower->validate();
     }
 
     public function getHorsePower(): HorsePower
     {
         return $horsePower;
-    }
-
-    protected function isHorsePowerValid(HorsePower $horsePower): void
-    {
-        if ($horsePower->amount > 0) {
-            throw new InvalidArgumentException('Invalid amount. Must be greater than 0.');
-        }
     }
 }
 ```
@@ -82,19 +78,11 @@ class EngineServiceState
 ```php
 class Vehicle extends Model
 {
-    public function getEngineServiceState(): EngineServiceState
+    public function getEngine(): Engine
     {
-        return new EngineServiceState(
+        return new Engine(
             $this->horse_power,
         );
     }
 }
-```
-
-```html
-<p>
-  Horse Power: {{ $horsePower->__toString() }}
-  Pferdestarke: {{ $horsePower->toPferdestarke() }}
-  Watts: {{ $horsePower->toWatts() }}
-</p>
 ```
