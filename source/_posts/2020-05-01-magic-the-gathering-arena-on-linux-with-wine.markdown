@@ -10,7 +10,7 @@ categories: mtg linux
 2. Execute the following from the terminal: `wine start MTGAInstaller_0.1.3213.823095.msi`.
 3. Follow the Setup Wizard prompts. It will look something like this:
 
-<img src="https://mtgarena-support.wizards.com/hc/article_attachments/4402586200596/image1.png" width="560" />
+{% img /images/posts/mtg-arena.jpg %}
 
 4. Once installation is complete, go to your Wine path then enter `Wizards of the Coast` and run `chmod +x MTGA.exe`.
 5. And finally launch it via `wine MTGA.exe`.
