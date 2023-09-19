@@ -8,7 +8,7 @@ categories: linux nginx php
 
 When developing a web application youl commonly run in Gateway errors like`502 Bad Gateway` or `504 Gateway Timeout`.
 
-<img src="https://i.guim.co.uk/img/static/sys-images/Technology/Pix/pictures/2013/8/1/1375368946554/502-Bad-Gateway-error-008.jpg?width=465&dpr=1&s=none"  width="238" />
+{% img right /images/posts/bad-gateway.png %}
 
 When PHP cannot process a request that Nginx sends to it, Nginx returns a gateway error. Usually, these errors are not caused by your application, but by some problem that happens before the application handles the request.
 
