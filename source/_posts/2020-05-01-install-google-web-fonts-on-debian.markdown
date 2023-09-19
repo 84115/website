@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Install Google Webfont On Debian"
-date: 2020-01-26 12:00
+date: 2020-01-26 19:14
 comments: false
 categories: linux fonts
 ---

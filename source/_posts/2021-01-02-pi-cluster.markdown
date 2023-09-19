@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "PI Cluster"
-date: 2021-01-02 12:00
+date: 2021-01-02 23:17
 comments: false
 categories: linux pi
 ---

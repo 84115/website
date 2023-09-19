@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Building a Standalone Health Status App"
-date: 2022-06-14 12:00
+date: 2022-06-14 15:21
 comments: false
 categories: php laravel linux
 ---

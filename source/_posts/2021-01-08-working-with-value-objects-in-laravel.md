@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Working with Value Objects in Laravel"
-date: 2021-01-08 12:00
+date: 2021-01-08 11:41
 comments: false
 categories: php laravel
 ---
